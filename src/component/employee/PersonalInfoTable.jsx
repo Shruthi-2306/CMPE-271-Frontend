@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./PersonalInfoTable.css";
+
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -86,13 +86,7 @@ class PersonalInfoTable extends Component {
         type: ["dateColumn"],
         filter: "agDateColumnFilter"
       },
-      {
-        headerName: "Hobbies",
-        field: "Hobbies",
-        sortable: true,
-        // filter: true ,
-        // width: 150,
-      },
+     
       {
         headerName: "Present Address",
         field: "PresentAddress",
@@ -100,19 +94,7 @@ class PersonalInfoTable extends Component {
         // filter: true ,
         width: 150,
       },
-      {
-        headerName: "",
-        field: "edit",
-        filter: false,
-        width: 30,
-        // cellRenderer:this.ageCellRendererFunc,
-        // cellRendererFramework: function(params) {
-        //   return <button OnClick={console.log("pa",params)}>Test</button>;
-        // },
-        cellRendererFramework: this.renderEditButton.bind(this),
-
-
-      },
+      
 
 
     ],
@@ -129,9 +111,9 @@ class PersonalInfoTable extends Component {
   };
   personalInfoObj = [];
   rowDataT = [];
-  loadPersonalInfoData = () => {
+  displayPersonalData= () => {
     axios
-      .get(process.env.REACT_APP_API_URL + "/api/personal-info/" + this.props.data["_id"], {
+      .get(process.env.REACT_APP_API_URL + "/api/personalInfo/" + this.props.data["_id"], {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -189,30 +171,15 @@ class PersonalInfoTable extends Component {
     }
   };
   componentDidMount() {
-    this.loadPersonalInfoData();
+    this.displayPersonalData();
   }
-  renderEditButton(params) {
-    console.log(params);
-    if (this.props.back) { return <React.Fragment /> }
-    return <FontAwesomeIcon
-      icon={faEdit}
-      onClick={() => this.props.onEditPersonalInfo(params.data.data)}
-    />;
-  }
+ 
 
   render() {
     return (
       <div id="table-outer-div-scroll">
         <h2 id="role-title">Employee Personal Details {this.props.back ? "of " + this.props.data["FirstName"] + " " + this.props.data["LastName"] : ""}</h2>
-        {/* 
-        <Button
-          variant="primary"
-          id="add-button"
-          onClick={this.props.onAddPersonalInfo}
-        >
-          <FontAwesomeIcon icon={faPlus} id="plus-icon" />
-          Add
-        </Button> */}
+       
         {this.props.back ? (<Link to="/hr/employee">
           <Button
             variant="primary"
@@ -229,20 +196,14 @@ class PersonalInfoTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-          //   style={
-          //     {
-          //     height: "500px",
-          //     width: "100%"
-          //   }
-          // }
+         
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
               defaultColDef={this.state.defaultColDef}
               columnTypes={this.state.columnTypes}
               rowData={this.state.rowData}
-              // floatingFilter={true}
-              // onGridReady={this.onGridReady}
+             
               pagination={true}
               paginationPageSize={10}
               getRowHeight={this.state.getRowHeight}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./LeaveApplicationEmpTable.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
