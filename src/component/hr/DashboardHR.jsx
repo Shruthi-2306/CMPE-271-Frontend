@@ -199,7 +199,7 @@ class DashboardHR extends Component {
                 <Route
                   path="/hr/city"
                   exact
-                  component={CityF}
+                  component={getCity}
                 />
                 <Route
                   path="/hr/leave-application-hr"
