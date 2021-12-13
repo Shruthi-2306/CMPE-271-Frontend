@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import "./LeaveApplicationHRTable.css";
+import React, { Component } from "react"
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -101,7 +100,7 @@ class LeaveApplicationHRTable extends Component {
   leaveApplicationHRObj = [];
   rowDataT = [];
 
-  loadLeaveApplicationHRData = () => {
+  loadLeaveHRData = () => {
     axios
       .get(process.env.REACT_APP_API_URL + "/api/leave-application-hr/", {
         headers: {
@@ -139,7 +138,7 @@ class LeaveApplicationHRTable extends Component {
       });
   };
 
-  onLeaveApplicationHRDelete = (e1, e2) => {
+  onLeaveHRDelete = (e1, e2) => {
     console.log(e1, e2);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
@@ -159,7 +158,7 @@ class LeaveApplicationHRTable extends Component {
     }
   };
   componentDidMount() {
-    this.loadLeaveApplicationHRData();
+    this.loadLeaveHRData();
   }
   renderButton(params) {
     console.log(params);
@@ -167,7 +166,7 @@ class LeaveApplicationHRTable extends Component {
       <FontAwesomeIcon
         icon={faTrash}
         onClick={() =>
-          this.onLeaveApplicationHRDelete(
+          this.onLeaveHRDelete(
             params.data.data["employee"][0]["_id"],
             params.data.data["_id"]
           )
@@ -207,20 +206,12 @@ class LeaveApplicationHRTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-          //   style={
-          //     {
-          //     height: "500px",
-          //     width: "100%"
-          //   }
-          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
               defaultColDef={this.state.defaultColDef}
               columnTypes={this.state.columnTypes}
               rowData={this.state.rowData}
-              // floatingFilter={true}
-              // onGridReady={this.onGridReady}
               pagination={true}
               paginationPageSize={10}
               getRowHeight={this.state.getRowHeight}
@@ -237,87 +228,6 @@ class LeaveApplicationHRTable extends Component {
               />
             </div>
           )}
-
-        {/* <div id="inner-table-div">
-          <table id="role-table">
-            <thead>
-              <tr>
-                <th width="13%">Emloyee Code</th>
-                <th width="13%">Name</th>
-                <th width="13%">Leavetype</th>
-                <th width="13%">FromDate</th>
-                <th width="13%">ToDate</th>
-                <th width="13%">Reasonforleave</th>
-                <th width="13%">Status</th>
-                <th width="4.5%" />
-                <th width="4.5%" />
-              </tr>
-            </thead>
-
-            {!this.state.loading ? (
-              <tbody>
-                {filteredLeaveA.map((data, index) => (
-                  <tr key={index}>
-                    <td>{data["employee"][0]["EmployeeCode"]}</td>
-                    <td>
-                      {data["employee"][0]["FirstName"] +
-                        " " +
-                        data["employee"][0]["LastName"]}
-                    </td>
-                    <td>{data["Leavetype"]}</td>
-                    <td>{data["FromDate"].slice(0, 10)}</td>
-                    <td>{data["ToDate"].slice(0, 10)}</td>
-                    <td>{data["Reasonforleave"]}</td>
-                    <td>{this.status(data["Status"])}</td>
-                    <td>
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        onClick={() =>
-                          this.props.onEditLeaveApplicationHR(data)
-                        }
-                      />
-                    </td>
-                    <td>
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        onClick={() =>
-                          this.onLeaveApplicationHRDelete(
-                            data["employee"][0]["_id"],
-                            data["_id"]
-                          )
-                        }
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            ) : (
-              <tbody>
-                <tr>
-                  <td />
-                  <td />
-                  <td />
-                  <td>
-                    <div id="loading-bar">
-                      <BarLoader
-                        css={override}
-                        sizeUnit={"px"}
-                        size={150}
-                        color={"#0000ff"}
-                        loading={true}
-                      />
-                    </div>
-                  </td>
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                </tr>
-              </tbody>
-            )}
-          </table>
-        </div> */}
       </div>
     );
   }

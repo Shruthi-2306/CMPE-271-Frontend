@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./DashboardHR.css";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import { Switch } from "react-router";
 import { Redirect } from "react-router-dom";
@@ -39,19 +38,19 @@ function RoleHRF() {
 }
 
 
-function PositionF() {
+function getPosition() {
   return <Position />;
 }
-function DepartmentF() {
+function getDepartment() {
   return <Department />;
 }
-function CountryF() {
+function getCountry() {
   return <Country />;
 }
-function StateF() {
+function getState() {
   return <State />;
 }
-function CityF() {
+function getCity() {
   return <City />;
 }
 function CompanyF() {
@@ -63,16 +62,9 @@ function EmployeeF() {
 function SalaryF() {
   return <Salary />;
 }
-function LeaveApplicationHRF() {
+function getLeaveApplication() {
   return <LeaveApplicationHR />;
 }
-
-// function HRPortalF() {
-//   return <HRPortal />;
-// }
-// function HRProjectBidF() {
-//   return <HRProjectBid />;
-// }
 
 class DashboardHR extends Component {
   state = {
@@ -86,22 +78,17 @@ class DashboardHR extends Component {
     // sidebarV.style.disply="none";
     
     if(this.state.checked==true){ 
-       // document.getElementById("sidebar").setAttribute("style", "display:none")
       document.getElementById("sidebar").setAttribute("class", "display-none");
-    }
-    // document.getElementById("sidebar").setAttribute("style", "display:block");
-    else{document.getElementById("sidebar").setAttribute("class", "display-block");}   
+    }else{document.getElementById("sidebar").setAttribute("class", "display-block");}   
     this.setState({ checked });
   }
 
   render() {
     return (
       <Router>
-        {/* <Redirect to='/login'  /> */}
-
+        
         <div id="outer-main-div">
           <div id="outer-nav">
-            {/* <NavBar loginInfo={this.props.data} /> */}
             <NavBar loginInfo={this.props.data} checked={this.state.checked} handleChange={this.handleChange} onLogout={this.props.onLogout}/>
 
           </div>
@@ -120,12 +107,6 @@ class DashboardHR extends Component {
                     User 
                   </Link> 
                 </li>
-                {/* <li>
-                  <Link to="/hr/salary">
-                    <FontAwesomeIcon icon={faRupeeSign} className="sidebar-icon" /> 
-                    Salary 
-                  </Link> 
-                </li> */}
                 <li>
                   <Link to="/hr/leave-application-hr">
                     <FontAwesomeIcon icon={faFileAlt} className="sidebar-icon" /> 
@@ -144,12 +125,7 @@ class DashboardHR extends Component {
                     Role 
                   </Link> 
                 </li>
-                {/* <li>
-                  <Link to="/hr/position">
-                    <FontAwesomeIcon icon={faChair} className="sidebar-icon" /> 
-                    Position 
-                  </Link> 
-                </li> */}
+                
                 <li>
                   <Link to="/hr/department">
                     <FontAwesomeIcon
@@ -180,54 +156,45 @@ class DashboardHR extends Component {
                 <li>
                  
                 </li>
-                {/* <li> <a href=""><FontAwesomeIcon icon={faChair} className="sidebar-icon"/> Position</a>   </li> */}
-                {/* <li> <a href=""><FontAwesomeIcon icon={faBuilding} className="sidebar-icon"/> Department</a>   </li> */}
-                {/* <li> <a href=""><FontAwesomeIcon icon={faDollarSign} className="sidebar-icon"/> Project Bidding</a>   </li> */}
-                {/* <li> <a href=""><FontAwesomeIcon icon={faTasks} className="sidebar-icon"/> Portal Master</a>   </li> */}
-              </ul>
+            </ul>
             </div>
             {/* <div id="sidebar-top-content" /> */}
             <div id="main-area">
               <div id="sidebar-top-content" />
-              {/* //table */}
-              {/* <RoleHR/> */}
+             
               <Switch>
                 <Route
                   path="/hr/employee"
-                  // exact
+                  
                   component={EmployeeF}
                 />
-                {/* <Route
-                  path="/hr/salary"
-                  exact
-                  component={SalaryF}
-                /> */}
+              
                 <Route
                   path="/hr/company"
                   exact
                   component={CompanyF}
                 />
                 <Route path="/hr/role" component={RoleHRF} />
-                {/* <Route path="/hr/role/form" exact component={RoleFormF} /> */}
+                
                 <Route
                   path="/hr/position"
                   exact
-                  component={PositionF}
+                  component={getPosition}
                 />
                 <Route
                   path="/hr/department"
                   exact
-                  component={DepartmentF}
+                  component={getDepartment}
                 />
                 <Route
                   path="/hr/country"
                   exact
-                  component={CountryF}
+                  component={getCountry}
                 />
                 <Route
                   path="/hr/state"
                   exact
-                  component={StateF}
+                  component={getState}
                 />
                 <Route
                   path="/hr/city"
@@ -237,18 +204,9 @@ class DashboardHR extends Component {
                 <Route
                   path="/hr/leave-application-hr"
                   exact
-                  component={LeaveApplicationHRF}
+                  component={getLeaveApplication}
                 />
-                 {/* <Route
-                  path="/hr/portal-master"
-                  exact
-                  component={HRPortalF}
-                /> */}
-                 {/* <Route
-                  path="/hr/project-bid"
-                  exact
-                  component={HRProjectBidF}
-                /> */}
+               
                 <Route
                   exact
                   path="/hr"

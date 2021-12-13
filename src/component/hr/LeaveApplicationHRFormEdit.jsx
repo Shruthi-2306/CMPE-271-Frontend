@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-// import "./LeaveApplicationHRFormEdit.css";
-// import { Form,Button } from "react-bootstrap";
 import { Form, Button, Col, Row } from "react-bootstrap";
-import axios from "axios";
+
 
 class LeaveApplicationHRForm extends Component {
   state = {
-    // LeaveApplicationHRData: this.props.editData["LeaveApplicationHRName"],
-
-    // LeavetypeData: this.props.editData["Leavetype"],
+  
     FromDateData: this.props.editData["FromDate"].slice(0, 10),
     ToDateData: this.props.editData["ToDate"].slice(0, 10),
     ReasonforleaveData: this.props.editData["Reasonforleave"],
@@ -16,18 +12,8 @@ class LeaveApplicationHRForm extends Component {
       this.props.editData["employee"][0]["FirstName"] +
       " " +
       this.props.editData["employee"][0]["LastName"]
-    // StatusData: this.props.editData["Status"],
-
-    // value={this.state.CompanyNameData}
-    // onChange={value => this.onCompanyNameDataChange(value)}
   };
-  //   onLeavetypeDataChange(e) {
-  //     this.setState({ CLeavetypeData: e.target.value });
-  //   }
-
-  //   onStatusDataChange(e) {
-  //     this.setState({StatusData: e.target.value });
-  //   }
+ 
 
   componentWillMount() {}
 
